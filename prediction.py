@@ -31,7 +31,8 @@ def clean_detections(detections):
     cleaned = []
     max_boxes = 10
     num_detections = min(detections['num_detections'], max_boxes)
-
+    
+    #hard code coupon value to 0.15 and only include detected class of Bottle
     for i in range(0, num_detections):
         d = {
             'box': {
@@ -42,10 +43,12 @@ def clean_detections(detections):
             },
             'class': detections['detection_class_entities'][i].decode('utf-8'),
             'cValue': 0.15,
+            'mValue': 3.00,
             'label': detections['detection_class_entities'][i].decode('utf-8'),
             'score': detections['detection_scores'][i],
         }
-        cleaned.append(d)
+        if (d.get("class") == 'Bottle') or (d.get("class") == 'Box'):
+            cleaned.append(d)
 
     return cleaned
 
