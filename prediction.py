@@ -43,11 +43,10 @@ def clean_detections(detections):
             },
             'class': detections['detection_class_entities'][i].decode('utf-8'),
             'cValue': 0.15,
-            'mValue': 3.00,
             'label': detections['detection_class_entities'][i].decode('utf-8'),
             'score': detections['detection_scores'][i],
         }
-        if (d.get("class") == 'Bottle') or (d.get("class") == 'Box'):
+        if (d.get("class") == 'Bottle') or (d.get("class") == 'Shirt'):
             cleaned.append(d)
 
     return cleaned
