@@ -42,8 +42,7 @@ def clean_detections(detections):
                 'xMax': detections['detection_boxes'][i][3]
             },
             'class': detections['detection_class_entities'][i].decode('utf-8'),
-            'cValue': 0.15,
-            'mValue': 3.00,
+            'cValue': '15% off',
             'label': detections['detection_class_entities'][i].decode('utf-8'),
             'score': detections['detection_scores'][i],
         }
