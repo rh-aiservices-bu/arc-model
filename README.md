@@ -1,5 +1,5 @@
 odh-s2i-project-simple
-==============================
+===============================
 
 Simple, unstructured, and unopinionated project for data science that is deployable as an OpenShift s2i Application.
 
