@@ -31,8 +31,8 @@ def clean_detections(detections):
     cleaned = []
     max_boxes = 10
     num_detections = min(detections['num_detections'], max_boxes)
-    
-    #hard code coupon value to 0.15 and only include detected class of Bottle
+
+    # hard code coupon value to 0.15 and only include detected class of Clothing
     for i in range(0, num_detections):
         d = {
             'box': {
@@ -46,7 +46,7 @@ def clean_detections(detections):
             'label': detections['detection_class_entities'][i].decode('utf-8'),
             'score': detections['detection_scores'][i],
         }
-        if (d.get("class") == 'Bottle') or (d.get("class") == 'Shirt'):
+        if (d.get("class") == 'Clothing' and d.get("score") >= 0.15):
             cleaned.append(d)
 
     return cleaned
@@ -56,6 +56,5 @@ def preload_model():
     blank_jpg = tf.io.read_file('blank.jpeg')
     blank_img = tf.image.decode_jpeg(blank_jpg, channels=3)
     detector(tf.image.convert_image_dtype(blank_img, tf.float32)[tf.newaxis, ...])
-
 
 preload_model()
