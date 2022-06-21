@@ -52,6 +52,9 @@ def clean_detections(detections):
     return cleaned
 
 
+"""
+This is to 'warm up' the model.
+"""
 def preload_model():
     blank_jpg = tf.io.read_file("blank.jpeg")
     blank_img = tf.image.decode_jpeg(blank_jpg, channels=3)
