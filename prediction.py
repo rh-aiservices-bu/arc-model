@@ -79,7 +79,15 @@ def predict_discounts(cleaned_objects):
 
     for detected_object in cleaned_objects:
         detected_discount = labels_preds[detected_object["class"]]
-        detected_object["cValue"] = str(detected_discount * 100) + "% off"
+        detected_object["cValue"] = str(round(detected_discount, 3) * 100) + "% off"
+        print(
+            "detected: "
+            + detected_object["class"]
+            + " confidence: "
+            + detected_object["score"]
+            + " discount is: "
+            + detected_object["cValue"]
+        )
 
     return cleaned_objects
 
@@ -97,6 +105,7 @@ def find_stock():
         now - now.replace(hour=0, minute=0, second=0, microsecond=0)
     ).total_seconds()
     portion_of_day = seconds_since_midnight / 86400  # fraction of day at this time.
+    print(now)
 
     # multiply all categories max stock by the portion of the daytime
     stock_items = categories.copy()
