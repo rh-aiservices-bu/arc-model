@@ -42,9 +42,9 @@ def find_objects_and_predict_discounts(message):
     detected_ojects = detect_objects(img_bytes)
     cleaned_objects = clean_up_detections(detected_ojects)
 
-    discs = predict_discounts(cleaned_objects)
+    discounts = predict_discounts(cleaned_objects)
 
-    return {"detections": discs}
+    return {"detections": discounts}
 
 
 def predict_discounts(cleaned_objects):
@@ -67,10 +67,10 @@ def predict_discounts(cleaned_objects):
     stock_array = scaler.transform(stock_array)
 
     # make model predictions on scaled data
-    predictions = discount_model.predict(stock_array)
+    discount_predictions = discount_model.predict(stock_array)
     # print(predictions)
 
-    labels_preds = dict(zip(orig_labels, predictions))
+    labels_preds = dict(zip(orig_labels, discount_predictions))
     # print(labels_preds)
 
     for detected_object in cleaned_objects:
