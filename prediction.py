@@ -14,12 +14,10 @@ detector = saved_model.signatures["default"]
 categories = {"Bottle": 100, "Pen": 1000, "Footwear": 50, "Drink": 100, "Clothing": 500}
 
 
-"""
-load the models necessary to predict discounts.
-"""
-
-
 def load_discount_model():
+    """
+    load the models necessary to predict discounts.
+    """
     discounts_path = "calculate-discounts/discount_models"
     model = load(open(discounts_path + "/knn-model_0.pkl", "rb"))
     sc = load(open(discounts_path + "/scaler_0.pkl", "rb"))
@@ -31,14 +29,14 @@ def load_discount_model():
 discount_model, scaler, encoder = load_discount_model()
 
 
-"""
-our main function, called from the webapp.
-takes in the image, uses object detection model to find objects
-then calls our discount calculating model to return objects and discounts.
-"""
-# TODO: rename function.
-def predict(body):
-    base64img = body.get("image")
+def find_objects_and_predict_discounts(message):
+    """
+    our main function, called from the webapp.
+    takes in the message containing the image,
+    uses object detection model to find objects,
+    then calls our discount calculating model to return objects and discounts.
+    """
+    base64img = message.get("image")
     img_bytes = base64.decodebytes(base64img.encode())
 
     detected_ojects = detect_objects(img_bytes)
@@ -49,13 +47,11 @@ def predict(body):
     return {"detections": discs}
 
 
-"""
-predict discounts for each item
-based on 'current stock'
-"""
-
-
 def predict_discounts(cleaned_objects):
+    """
+    predict discounts for each item
+    based on 'current stock'
+    """
     # get current stock, convert to np array
     current_stock = find_stock()
     list_stock = list(current_stock.items())
@@ -92,13 +88,11 @@ def predict_discounts(cleaned_objects):
     return cleaned_objects
 
 
-"""
-find the current stock of items
-based on the current time of day
-"""
-
-
 def find_stock():
+    """
+    find the current stock of items
+    based on the current time of day
+    """
     # ref for calc of seconds_since_midnight: https://stackoverflow.com/a/15971505
     now = datetime.now()
     seconds_since_midnight = (
@@ -114,13 +108,11 @@ def find_stock():
     return stock_items
 
 
-"""
-finds the objects in a given image
-using our pretrained CV model
-"""
-
-
 def detect_objects(img):
+    """
+    finds the objects in a given image
+    using our pretrained CV model
+    """
     image = tf.image.decode_jpeg(img, channels=3)
     converted_img = tf.image.convert_image_dtype(image, tf.float32)[tf.newaxis, ...]
     result = detector(converted_img)
@@ -132,13 +124,11 @@ def detect_objects(img):
     return output_dict
 
 
-"""
-'cleans up' the detected objects list 
-only keeps objects of certain classes with solid confidence scores
-"""
-
-
 def clean_up_detections(detections):
+    """
+    'cleans up' the detected objects list
+    only keeps objects of certain classes with solid confidence scores
+    """
     cleaned = []
     max_boxes = 10
     num_detections = min(detections["num_detections"], max_boxes)
@@ -163,12 +153,10 @@ def clean_up_detections(detections):
     return cleaned
 
 
-"""
-This is to 'warm up' the model.
-"""
-
-
 def preload_model():
+    """
+    This is to 'warm up' the model.
+    """
     blank_jpg = tf.io.read_file("blank.jpeg")
     blank_img = tf.image.decode_jpeg(blank_jpg, channels=3)
     detector(tf.image.convert_image_dtype(blank_img, tf.float32)[tf.newaxis, ...])
