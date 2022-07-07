@@ -41,11 +41,8 @@ def predict(body):
     base64img = body.get("image")
     img_bytes = base64.decodebytes(base64img.encode())
 
-    # img_bytes = tf.io.read_file("images/RHODS_cool_store.png")
-    # img_bytes = base64.decodebytes(base64img.encode())
-
-    detected_ojects = detect(img_bytes)
-    cleaned_objects = clean_detections(detected_ojects)
+    detected_ojects = detect_objects(img_bytes)
+    cleaned_objects = clean_up_detections(detected_ojects)
 
     discs = predict_discounts(cleaned_objects)
 
@@ -82,9 +79,7 @@ def predict_discounts(cleaned_objects):
 
     for detected_object in cleaned_objects:
         detected_discount = labels_preds[detected_object["class"]]
-        detected_object["cValue"] = (
-            detected_object["class"] + "is" + str(detected_discount) + "% off"
-        )
+        detected_object["cValue"] = str(detected_discount * 100) + "% off"
 
     return cleaned_objects
 
@@ -110,7 +105,13 @@ def find_stock():
     return stock_items
 
 
-def detect(img):
+"""
+finds the objects in a given image
+using our pretrained CV model
+"""
+
+
+def detect_objects(img):
     image = tf.image.decode_jpeg(img, channels=3)
     converted_img = tf.image.convert_image_dtype(image, tf.float32)[tf.newaxis, ...]
     result = detector(converted_img)
@@ -122,7 +123,13 @@ def detect(img):
     return output_dict
 
 
-def clean_detections(detections):
+"""
+'cleans up' the detected objects list 
+only keeps objects of certain classes with solid confidence scores
+"""
+
+
+def clean_up_detections(detections):
     cleaned = []
     max_boxes = 10
     num_detections = min(detections["num_detections"], max_boxes)
@@ -159,5 +166,3 @@ def preload_model():
 
 
 preload_model()
-# detections = predict()
-# print(detections)
