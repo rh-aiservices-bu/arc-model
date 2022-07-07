@@ -83,7 +83,7 @@ def predict_discounts(cleaned_objects):
     for detected_object in cleaned_objects:
         detected_discount = labels_preds[detected_object["class"]]
         detected_object["cValue"] = (
-            detected_object["class"] + "is" + detected_discount + "% off"
+            detected_object["class"] + "is" + str(detected_discount) + "% off"
         )
 
     return cleaned_objects
