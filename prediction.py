@@ -78,11 +78,11 @@ def predict_discounts(cleaned_objects):
         detected_object["cValue"] = str(round(detected_discount, 3) * 100) + "% off"
         print(
             "detected: "
-            + detected_object["class"]
+            + str(detected_object["class"])
             + " confidence: "
-            + detected_object["score"]
+            + str(detected_object["score"])
             + " discount is: "
-            + detected_object["cValue"]
+            + str(detected_object["cValue"])
         )
 
     return cleaned_objects
