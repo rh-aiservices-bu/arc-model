@@ -74,8 +74,9 @@ def predict_discounts(cleaned_objects):
     # print(labels_preds)
 
     for detected_object in cleaned_objects:
-        detected_discount = labels_preds[detected_object["class"]]
-        detected_object["cValue"] = str(round(detected_discount, 3) * 100) + "% off"
+        detected_discount = labels_preds[detected_object["class"]] * 100
+        rounded_discount = round(detected_discount, 1)
+        detected_object["cValue"] = str(rounded_discount) + "% off"
         print(
             "detected: "
             + str(detected_object["class"])
@@ -151,6 +152,22 @@ def clean_up_detections(detections):
             cleaned.append(d)
 
     return cleaned
+
+
+def find_objects_and_predict_discounts_testing(img_path):
+    """
+    modified main function, called outside the webapp for testing.
+    takes in the image path
+    uses object detection model to find objects,
+    then calls our discount calculating model to return objects and discounts.
+    """
+    img_bytes = tf.io.read_file(img_path)
+    detected_ojects = detect_objects(img_bytes)
+    cleaned_objects = clean_up_detections(detected_ojects)
+
+    discs = predict_discounts(cleaned_objects)
+
+    return {"detections": discs}
 
 
 def preload_model():
