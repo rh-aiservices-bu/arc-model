@@ -75,7 +75,7 @@ def predict_discounts(cleaned_objects):
 
     for detected_object in cleaned_objects:
         detected_discount = labels_preds[detected_object["class"]] * 100
-        rounded_discount = round(detected_discount, 1)
+        rounded_discount = int(detected_discount)
         detected_object["cValue"] = str(rounded_discount) + "% off"
         print(
             "detected: "
