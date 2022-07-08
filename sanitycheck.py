@@ -8,6 +8,7 @@ import sklearn
 from datetime import datetime
 import json
 import pickle
+import sys
 
 
 def sanity_check(filename):
@@ -47,4 +48,18 @@ def test_detections(detections):
     return True
 
 
-print(sanity_check("images/RHODS_cool_store.png"))
+
+#print(sanity_check("images/RHODS_cool_store.png"))
+
+if sanity_check("images/RHODS_cool_store.png") is True:
+    if sanity_check("groceries.jpg") is False:
+        print("passed both checks")
+        sys.exit(0)
+    else:
+        print("failed second check")
+        sys.exit(2)
+else:
+    print("failed first check")
+    sys.exit(2)
+
+
