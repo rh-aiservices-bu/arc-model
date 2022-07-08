@@ -6,3 +6,4 @@ tensorflow
 matplotlib
 six
 numpy
+scikit-learn==1.1.1

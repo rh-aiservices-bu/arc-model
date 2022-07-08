@@ -1,6 +1,6 @@
 import json
 from flask import Flask, jsonify, request
-from prediction import predict
+from prediction import find_objects_and_predict_discounts
 
 application = Flask(__name__)
 
@@ -15,4 +15,4 @@ def status():
 def create_prediction():
     data = request.data or "{}"
     body = json.loads(data)
-    return jsonify(predict(body))
+    return jsonify(find_objects_and_predict_discounts(body))
