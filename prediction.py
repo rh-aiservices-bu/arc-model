@@ -18,7 +18,7 @@ def load_discount_model():
     """
     load the models necessary to predict discounts.
     """
-    discounts_path = "calculate-discounts/discount_models"
+    discounts_path = "5_discount_models"
     model = load(open(discounts_path + "/knn-model_0.pkl", "rb"))
     sc = load(open(discounts_path + "/scaler_0.pkl", "rb"))
     enc = load(open(discounts_path + "/label-encoder_0.pkl", "rb"))
