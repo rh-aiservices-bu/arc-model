@@ -174,7 +174,7 @@ def preload_model():
     """
     This is to 'warm up' the model.
     """
-    blank_jpg = tf.io.read_file("blank.jpeg")
+    blank_jpg = tf.io.read_file("images/blank.jpeg")
     blank_img = tf.image.decode_jpeg(blank_jpg, channels=3)
     detector(tf.image.convert_image_dtype(blank_img, tf.float32)[tf.newaxis, ...])
 
