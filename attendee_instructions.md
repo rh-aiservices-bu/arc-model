@@ -13,7 +13,8 @@
   * [Reviewing the pipeline run](#reviewing-the-pipeline-run)
   * [Retrain the model (again).](#retrain-the-model-again)
   * [Watch the build.](#watch-the-build)
-* [9. Git Ops and how it helps to manage ML Model LifeCycle (MLOps way).](#9-git-ops-and-how-it-helps-to-manage-ml-model-lifecycle-mlops-way)
+* [GitOps and how it helps to manage ML Model LifeCycle (MLOps way).](#gitops-and-how-it-helps-to-manage-ml-model-lifecycle-mlops-way)
+
 
 
 TODOS (priority hi->low):
@@ -143,7 +144,7 @@ Run the notebook '6_git_commit_and_push.ipynb' again to commit and push our mode
 
 Let's look at the pipeline build in the OpenShift Console tab. We can see the pipeline build will run now, and can take a look at our sanity check step in the pipeline to see the the log and see our model has passed our predefined tests.
 
-## 9. Git Ops and how it helps to manage ML Model LifeCycle (MLOps way).
+## GitOps and how it helps to manage ML Model LifeCycle (MLOps way).
 
 Lets look at CICD process and how if follows the GitOps principles. Also walk through the OpenShift Pipeline and OpenShift GitOps console.
 
