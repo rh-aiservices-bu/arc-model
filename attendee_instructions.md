@@ -75,6 +75,11 @@ Run the notebook '6_git_commit_and_push.ipynb' again to commit and push our mode
 
 Let's look at the pipeline build in the OpenShift Console tab. We can see the pipeline build will run now, and can take a look at our sanity check step in the pipeline to see the the log and see our model has passed our predefined tests.
 
-## 9. Pipeline how to with Ritesh
+## 9. Git Ops and how it helps to manage ML Model LifeCycle (MLOps way).
 
-**Not  sure what you want this section(s) to look like and be called Ritesh.**
+Lets look at CICD process and how if follows the GitOps principles. Also walk through the OpenShift Pipeline and OpenShift GitOps console.
+OpenShift Pipeline does continuous integration. Once you push your code/model to your respository, it will automatically trigger pipeline to test the new model, build it and deploy it in dev environment. The OpenShift Pipeline do not have any control over deplyment on PROD.
+OpenShift GitOps does have control over prod environment, based on the changes to its prod image it will trigger auto deployment of the new image into prod.
+You see the CI and CD processes are separately running and OpenShift Pipelines (where dev team works) do not have access to change anything in production project.
+Also change in code (e.g. change in image tag in prod using Kustomize) triggers change in prod container update with the new image and new model. 
+No one touches the production environment directly and updates the image, rather its all followed through change in code, managed through git and completely auditable and reversible if required.
