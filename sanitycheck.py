@@ -52,7 +52,7 @@ def test_detections(detections):
 #print(sanity_check("images/RHODS_cool_store.png"))
 
 if sanity_check("images/RHODS_cool_store.png") is True:
-    if sanity_check("groceries.jpg") is False:
+    if sanity_check("images/groceries.jpg") is False:
         print("passed both checks")
         sys.exit(0)
     else:
