@@ -25,23 +25,29 @@ TODOS (priority hi->low):
 
 ## Workshop Environment.
 
-### for Red Hat Employees
+### For Red Hat Employees:
 
 If you are a Red Hat employee, you can reserve the workshop environment using the [RHPDS](https://rhpds.redhat.com/) system.
 
 ![](instructions/rhpds.png)
 
-### for the general public
+### For the general public:
 
 If you do not work for Red Hat, an environment will be provided for you as part of the workshop.
 
-**(Update with instructions for automated ID method).**
+Follow [this link](https://demo.redhat.com/workshop/7b85bw) (also found below) to claim an environment - simply enter your email and the password `redhat`.
 
-* [Current link to sheet](https://docs.google.com/spreadsheets/d/12tr4yU-Rhl78suCeFIJqrQyfvimrOv-HA_1IrDtvMeg/edit#gid=0)
+https://demo.redhat.com/workshop/7b85bw
+
+After logging in, you'll be redirected to a site containing all the URls and logins you'll need to complete the workshop. That page should look like this: 
+
+![](instructions/logins-screen.png)
+
+<!-- * [Current link to sheet](https://docs.google.com/spreadsheets/d/12tr4yU-Rhl78suCeFIJqrQyfvimrOv-HA_1IrDtvMeg/edit#gid=0)
 
 To claim an environment, simply enter your name in the first column of any open row containing environment info. This row will now contain all the links and logins you should need to complete our workshop.
 
-If there are no available environments, ____.
+If there are no available environments, ____. -->
 
 ## Accessing and testing your deployed Application
 
