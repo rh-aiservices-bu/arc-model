@@ -35,11 +35,11 @@ If you are a Red Hat employee, you can reserve the workshop environment using th
 
 If you do not work for Red Hat, an environment will be provided for you as part of the workshop.
 
-Follow [this link](https://demo.redhat.com/workshop/7b85bw) (also found below) to claim an environment - simply enter your email and the password `redhat`.
+Follow the link found below to claim an environment - simply enter your email (any email belonging to you) and the password will be given during the presentation.
 
 https://demo.redhat.com/workshop/7b85bw
 
-After logging in, you'll be redirected to a site containing all the URls and logins you'll need to complete the workshop. That page should look like this: 
+After logging in, you'll be redirected to a site containing all the URLs and logins you'll need to complete the workshop. That page should look like this: 
 
 ![](instructions/logins-screen.png)
 
@@ -55,7 +55,9 @@ As part of the bootstrapping of your environment, an initial instance of your ap
 Let's review it and confirm it works as expected.
 
 1. Follow the link to your 'OpenShift Console URL'
-1. Log in using the username and password for the OpenShift `admin` account
+1. Log in using the username and password for the OpenShift `user1` account
+1. Select `Administrator` view.
+    ![](instructions/select-administrator.png)
 1. Navigate to **Networking**, then **Routes**
 1. Select the project called **retail-rhods-project**
 1. You will see a route called **object-detection-app-git**
@@ -113,7 +115,9 @@ Each environment comes with a dedicated instance of Gitea so that each student c
 * Paste the URL and click **Clone**
 * In the File Explorer menu, double-click on **arc-model** to move to that directory
 * Click on the Git Icon
-* Change the current branch from from `main` to `origin/dev`
+* ***IMPORTANT:*** **Change the current branch** from from `main` to `origin/dev`
+
+    ![](instructions/select-dev.png)
 
 ### Retrain the model
 
@@ -131,7 +135,7 @@ Now that we've cloned the project, let's retrain the model. We will use a notebo
 * Once all the cells have run, you will notice that some of the files in the folder **5_discount_models** have been updated.
 
 ### Publish the changes
-monday
+
 We have now updated our model files as well as the notebook that was used to generate them. We will push those changes back into our gitea instance, in the `dev` branch.
 
 * Open up the notebook called **6_git_commit_and_push.ipynb**
@@ -152,6 +156,7 @@ Our dev app should automatically rebuild since that we've pushed our changes to 
 
 1. Log into the OpenShift Console
 1. Navigate to **Pipelines** , then **Pipelines** (yes, again), and then go to **PipelineRuns**
+    ![](instructions/select-pipelines.png)
 1. Make sure that the selected project is **retail-rhods-project**
 1. You should see a pipeline run that failed on the third step
 1. Review the failed step.
@@ -164,18 +169,27 @@ Let's fix this! Clearly we had a problem with our data - luckily we received the
 
 Even more lucky, our pipeline has prevented us from putting a "bad" model into our dev environment. Therefore, we don't even need to worry about rolling back a bad change: the bad change was prevented from happening.
 
-* Again, go to '5_discount_model.ipynb' notebook in your RHODS tab.
-* Let's use the new data from wednesday, update that same cell with 'discount_data/datasets/tuesday.csv'.
-* Now, rerun the notebook by clicking 'Restart Kernel and Run All'.
-* This will update the discount model with a new discount model trained on wednesday's data.
+1. Again, go to `5_discount_model.ipynb` notebook in your RHODS tab.
+1. Let's use the new data from wednesday, update that same cell as before to now point to `discount_data/datasets/wednesday.csv`.
 
-we could also run the sanity-check here, but the pipeline will take care of that for us.
+1. Now, rerun the notebook by clicking **Restart Kernel and Run All** as we did before.
+1. This will update the discount model with a new discount model trained on wednesday's data.
 
-Run the notebook '6_git_commit_and_push.ipynb' again to commit and push our model changes to our dev git repo.
+We could also run the sanity-check here, but the pipeline will take care of that for us.
+
+5. Run the notebook `6_git_commit_and_push.ipynb` again to commit and push our model changes to our dev git repo.
 
 ### Watch the build.
 
-Let's look at the pipeline build in the OpenShift Console tab. We can see the pipeline build will run now, and can take a look at our sanity check step in the pipeline to see the the log and see our model has passed our predefined tests.
+Let's look at the pipeline build now that we've retrained our model with what should be good data. 
+
+1. Navigate back to your OpenShift Console tab.
+
+1. Again, take a look at the PipelineRuns and click on the latest run which should be in progress.
+
+1. We can click on the sanity check step within our pipeline, view the log and see that the model has now passed our predefined tests.
+
+1. After the sanity check passes, the rest of the pipeline can now complete and our app will be redeployed with our changes.
 
 ## GitOps and how it helps to manage ML Model LifeCycle (MLOps way).
 
