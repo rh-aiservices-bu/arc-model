@@ -107,6 +107,9 @@ Each environment comes with a dedicated instance of Gitea so that each student c
 * Navigate back to your JupyterLab tab
 * Click on the Git Icon (fourth of the 6 big icons on the left)
 * Click on the **Clone a repository** button
+
+  * ![](instructions/clone-repo.png)
+
 * Paste the URL and click **Clone**
 * In the File Explorer menu, double-click on **arc-model** to move to that directory
 * Click on the Git Icon
@@ -121,6 +124,9 @@ Now that we've cloned the project, let's retrain the model. We will use a notebo
 * In the third cell you can see a reference to our "monday" dataset called `discount_data/datasets/monday.csv`
 * Update the content of the cell so that it points to our second dataset: `discount_data/datasets/tuesday.csv`
 * Select the **Run** menu, then the last option: **Restart Kernel and Run All Cells**
+
+  * ![](instructions/csv-restart-run-all.png)
+
 * Confirm by clicking **Restart**
 * Once all the cells have run, you will notice that some of the files in the folder **5_discount_models** have been updated.
 
