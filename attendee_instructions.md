@@ -1,8 +1,13 @@
-# AR Coupons Workshop - Instructions
+# Retail Application - Workshop Instructions
+
+
+<details>
+<summary>Toggle Table of Contents</summary>
+<p>
 
 * [Workshop Environment.](#workshop-environment)
-  * [for Red Hat Employees](#for-red-hat-employees)
-  * [for the general public](#for-the-general-public)
+  * [For Red Hat Employees:](#for-red-hat-employees)
+  * [For the general public:](#for-the-general-public)
 * [Accessing and testing your deployed Application](#accessing-and-testing-your-deployed-application)
 * [Retraining the model](#retraining-the-model)
   * [Logging into RHODS](#logging-into-rhods)
@@ -15,6 +20,8 @@
   * [Watch the build.](#watch-the-build)
 * [GitOps and how it helps to manage ML Model LifeCycle (MLOps way).](#gitops-and-how-it-helps-to-manage-ml-model-lifecycle-mlops-way)
 
+</p>
+</details>
 
 
 TODOS (priority hi->low):
@@ -39,7 +46,7 @@ Follow the link found below to claim an environment - simply enter your email (a
 
 https://demo.redhat.com/workshop/7b85bw
 
-After logging in, you'll be redirected to a site containing all the URLs and logins you'll need to complete the workshop. That page should look like this: 
+After logging in, you'll be redirected to a site containing all the URLs and logins you'll need to complete the workshop. That page should look like this:
 
 ![](instructions/logins-screen.png)
 
@@ -181,7 +188,7 @@ We could also run the sanity-check here, but the pipeline will take care of that
 
 ### Watch the build.
 
-Let's look at the pipeline build now that we've retrained our model with what should be good data. 
+Let's look at the pipeline build now that we've retrained our model with what should be good data.
 
 1. Navigate back to your OpenShift Console tab.
 
