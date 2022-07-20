@@ -18,7 +18,11 @@
   * [Reviewing the pipeline run](#reviewing-the-pipeline-run)
   * [Retrain the model (again).](#retrain-the-model-again)
   * [Watch the build.](#watch-the-build)
-* [GitOps and how it helps to manage ML Model LifeCycle (MLOps way).](#gitops-and-how-it-helps-to-manage-ml-model-lifecycle-mlops-way)
+* [Reviewing ArgoCD and GitOps](#reviewing-argocd-and-gitops)
+  * [Connecting to OpenShift GitOps](#connecting-to-openshift-gitops)
+  * [Attempting a manual change in OpenShift](#attempting-a-manual-change-in-openshift)
+  * [Updating things the GitOps way](#updating-things-the-gitops-way)
+* [Wrap up of Hands-On](#wrap-up-of-hands-on)
 
 </p>
 </details>
@@ -192,16 +196,57 @@ Let's look at the pipeline build now that we've retrained our model with what sh
 
 1. After the sanity check passes, the rest of the pipeline can now complete and our app will be redeployed with our changes.
 
-## GitOps and how it helps to manage ML Model LifeCycle (MLOps way).
+## Reviewing ArgoCD and GitOps
 
-Lets look at CICD process and how if follows the GitOps principles. Also walk through the OpenShift Pipeline and OpenShift GitOps console.
+In the previous section, we've seen how the pipeline can help detect potential issues and prevent from implementing "broken" artifacts in our dev environment.
 
-OpenShift Pipeline does continuous integration. Once you push your code/model to your respository, it will automatically trigger pipeline to test the new model, build it and deploy it in dev environment. The OpenShift Pipeline do not have any control over deployment on PROD.
+In this section, we will see how OpenShift GitOps is used deploy our application, and then to maintain its state.
 
-OpenShift GitOps does have control over prod environment, based on the changes to its prod image it will trigger auto deployment of the new image into prod.
+### Connecting to OpenShift GitOps
 
-You see the CI and CD processes are separately running and OpenShift Pipelines (where dev team works) do not have access to change anything in production project.
+* Among the URLs of your environment, locate the **ArgoCD** one.
+* You will use the username `admin` and the associated password (provided with the environment details)
+* Once you're logged into ArgoCD, explore the 2 apps that you see.
 
-Also change in code (e.g. change in image tag in prod using Kustomize) triggers change in prod container update with the new image and new model.
+### Attempting a manual change in OpenShift
 
-No one touches the production environment directly and updates the image, rather its all followed through change in code, managed through git and completely auditable and reversible if required.
+One way to illustrate the benefits of ArgoCD is to try to perform an ad-hoc change in OpenShift.
+
+* Open the OpenShift Console.
+* Navigate to **Workloads** and then **Deployments**.
+* You will see that the deployment that ends with `-rest` currently has a single pod (replica)
+* Using the drop down, you can change that to 5 pods instead of 1.
+
+By default, ArgoCD will reconcile things every 5 minutes.
+
+In the interest of time, we can trigger this to happen sooner by clicking on the **Sync/Refresh** options.
+
+You will see that doing so will reset things to their original values.
+
+In fact, you could actually delete a whole lot of things on the OpenShift side, and ArgoCD would re-create them almost as quickly.
+
+### Updating things the GitOps way
+
+So if we did want more replicas, what we have to do is to do it in the Gitea repo, and then get Argo to make that change happen. So let's do that.
+
+* Access gitea again
+* Make sure you are logged in
+* Navigate to the repo called `??? rhods-dev-gitops ???`
+* In this repo, stay in the `main` branch
+* Navigate to the file `??? base/deployment...-rest...yaml ???`
+* Edit the file directly in Gitea
+* Change the text `replicas: 1` to `replicas: 4`
+* Commit the change with a meaningful commit message.
+* Once that is done, toggle over to Argo and get it to refresh again.
+* You will quickly see that the number of pods will have been changed in the target environment as well.
+
+Well, we've finally achieved our change, and it's been implemented in the cluster. As a bonus, we now have very good traceability on who did that change when, and it's also not a lot easier to undo it if needed.
+
+## Wrap up of Hands-On
+
+This concludes the hands-on part of this workshop.
+Your environment will not persist much longer after the end of the session, so make sure to save anything you wish to keep.
+
+We hope you have enjoyed this hands-on that you have learned a few new things along the way.
+
+If you have questions, comments, or feedback, feel free to use the Q&A panel to share it back with us.
