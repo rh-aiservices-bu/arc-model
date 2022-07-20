@@ -240,7 +240,7 @@ So if we did want more replicas, what we have to do is to do it in the Gitea rep
 * Once that is done, toggle over to Argo and get it to refresh again.
 * You will quickly see that the number of pods will have been changed in the target environment as well.
 
-Well, we've finally achieved our change, and it's been implemented in the cluster. As a bonus, we now have very good traceability on who did that change when, and it's also not a lot easier to undo it if needed.
+Well, we've finally achieved our change, and it's been implemented in the cluster. As a bonus, we now have very good traceability on who did that change when, and it's also a lot easier to undo it if needed.
 
 ## Wrap up of Hands-On
 
