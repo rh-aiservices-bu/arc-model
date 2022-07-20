@@ -24,12 +24,6 @@
 </details>
 
 
-TODOS (priority hi->low):
-- fill in instructions left out (will need to launch a lab to do these parts to make sure they're accurate).
-- fill in instructions on what to do if we run out of environments.
-- update link to sheet to sheet that anyone from outside RH can access.
-- add images/screenshots.
-
 ## Workshop Environment.
 
 ### For Red Hat Employees:
