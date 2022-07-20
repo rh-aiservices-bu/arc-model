@@ -60,10 +60,11 @@ As part of the bootstrapping of your environment, an initial instance of your ap
 Let's review it and confirm it works as expected.
 
 1. Follow the link to your 'OpenShift Console URL'
-1. Log in using the username and password for the OpenShift `user1` account
+1. Log in to OpenShift using the username: `user1` and password: `openshift`
 1. Select `Administrator` view.
     ![](instructions/select-administrator.png)
 1. Navigate to **Networking**, then **Routes**
+    * In this tab you will likely get a permissions error. Ignore this error, as following the next instruction (selecting the project) will fix this.
 1. Select the project called **retail-rhods-project**
 1. You will see a route called **object-detection-app-git**
 1. Click on the matching hyperlink
@@ -109,6 +110,7 @@ Each environment comes with a dedicated instance of Gitea so that each student c
 * Once you have the gitea URL:
 * Log in to Gitea as user `lab-user` with password `openshift`.
 * Navigate to the **arc-model** git repo.
+  * Within the repo, select the `dev` branch - this is what we will be working within.
 * Copy the Git Clone URL:
   * ![](instructions/copy-git-url.png)
 * Navigate back to your JupyterLab tab
@@ -143,7 +145,10 @@ Now that we've cloned the project, let's retrain the model. We will use a notebo
 
 We have now updated our model files as well as the notebook that was used to generate them. We will push those changes back into our gitea instance, in the `dev` branch.
 
-* Open up the notebook called **6_git_commit_and_push.ipynb**
+* Open up the notebook called `6_git_commit_and_push.ipynb`
+* In the third cell, replace the existing command with:
+
+  `!git add .`
 * Once again, run the **Restart Kernel and Run all Cells**
 * Doing this will automatically Commit our changes into the local git repo, and then push those commits back into the Gitea instance.
 
