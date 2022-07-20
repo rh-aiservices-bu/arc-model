@@ -210,6 +210,8 @@ In this section, we will see how OpenShift GitOps is used deploy our application
 ### Connecting to OpenShift GitOps
 
 * Among the URLs of your environment, locate the **ArgoCD** one.
+* When you first open up that URL, you may get a warning that "your connection is not private".
+* Click on **Advanced** and then **Proceed to openshift-gitops.......opentlc.com(unsafe)**.
 * You will use the username `admin` and the associated password (provided with the environment details)
 * Once you're logged into ArgoCD, explore the 2 apps that you see.
 
@@ -219,29 +221,37 @@ One way to illustrate the benefits of ArgoCD is to try to perform an ad-hoc chan
 
 * Open the OpenShift Console.
 * Navigate to **Workloads** and then **Deployments**.
-* You will see that the deployment that ends with `-rest` currently has a single pod (replica)
-* Using the drop down, you can change that to 5 pods instead of 1.
+* You will see that the deployment called `object-detection-rest` currently has a single pod (replica)
+* If you click on the 3-dots icon at the end of that line, you can choose to **Edit pod count**.
+* Change that `1` into a `5` and click **Save**
 
 By default, ArgoCD will reconcile things every 5 minutes.
 
-In the interest of time, we can trigger this to happen sooner by clicking on the **Sync/Refresh** options.
+In the interest of time, we can trigger this to happen sooner. Let's see how.
+* click on the **retail-dev** app
+* Once the app is open, click on **APP DIFF**
+* Tick the box that says **Compact Diff**
+* The difference that you see should make sense
+* click on **Sync**
+* click **SYNCHRONIZE**
 
-You will see that doing so will reset things to their original values.
+You will see that doing so will reset things to their original values. The diff will go away, and the number of pods for this deployment will go back down to 1.
 
-In fact, you could actually delete a whole lot of things on the OpenShift side, and ArgoCD would re-create them almost as quickly.
+In fact, you could actually delete a whole lot of things on the OpenShift side, and ArgoCD would re-create them almost as quickly!
 
 ### Updating things the GitOps way
 
 So if we did want more replicas, what we have to do is to do it in the Gitea repo, and then get Argo to make that change happen. So let's do that.
 
 * Access gitea again
-* Make sure you are logged in
-* Navigate to the repo called `??? rhods-dev-gitops ???`
+* Make sure you are logged in as `lab-user` with password `openshift`
+* Navigate to the repo called `retail-dev-gitops`
 * In this repo, stay in the `main` branch
-* Navigate to the file `??? base/deployment...-rest...yaml ???`
-* Edit the file directly in Gitea
+* Navigate to the file `/base/object-detection-rest-deployment.yaml`
+* Edit the file directly in Gitea (using the pencil icon)
 * Change the text `replicas: 1` to `replicas: 4`
-* Commit the change with a meaningful commit message.
+* Commit the change with a meaningful commit message. For example:
+    ![](instructions/commit-msg.png)
 * Once that is done, toggle over to Argo and get it to refresh again.
 * You will quickly see that the number of pods will have been changed in the target environment as well.
 
@@ -252,6 +262,6 @@ Well, we've finally achieved our change, and it's been implemented in the cluste
 This concludes the hands-on part of this workshop.
 Your environment will not persist much longer after the end of the session, so make sure to save anything you wish to keep.
 
-We hope you have enjoyed this hands-on that you have learned a few new things along the way.
+We hope you have enjoyed this hands-on and that you have learned a few new things along the way.
 
 If you have questions, comments, or feedback, feel free to use the Q&A panel to share it back with us.
