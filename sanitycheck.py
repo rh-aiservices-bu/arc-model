@@ -36,7 +36,8 @@ def test_detections(detections):
         return False
 
     discount_val = detections[0]["cValue"]
-    discount_val = int(discount_val[:2])
+    discount_val, _, _ = discount_val.partition('%')
+    discount_val = int(discount_val)
 
     # ensure our discount is within our bounds.
     if 0 > discount_val:
