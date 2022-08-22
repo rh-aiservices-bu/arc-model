@@ -110,7 +110,6 @@ Each environment comes with a dedicated instance of Gitea so that each student c
 * Once you have the gitea URL:
 * Log in to Gitea as user `lab-user` with password `openshift`.
 * Navigate to the **arc-model** git repo.
-  * Within the repo, select the `dev` branch - this is what we will be working within.
 * Copy the Git Clone URL:
   * ![](instructions/copy-git-url.png)
 * Navigate back to your JupyterLab tab
@@ -121,10 +120,6 @@ Each environment comes with a dedicated instance of Gitea so that each student c
 
 * Paste the URL and click **Clone**
 * In the File Explorer menu, double-click on **arc-model** to move to that directory
-* Click on the Git Icon
-* ***IMPORTANT:*** **Change the current branch** from from `main` to `origin/dev`
-
-    ![](instructions/select-dev.png)
 
 ### Retrain the model
 
@@ -143,7 +138,7 @@ Now that we've cloned the project, let's retrain the model. We will use a notebo
 
 ### Publish the changes
 
-We have now updated our model files as well as the notebook that was used to generate them. We will push those changes back into our gitea instance, in the `dev` branch.
+We have now updated our model files as well as the notebook that was used to generate them. We will push those changes back into our gitea instance, in the `main` branch.
 
 * Open up the notebook called `6_git_commit_and_push.ipynb`
 * In the third cell, replace the existing command with:
