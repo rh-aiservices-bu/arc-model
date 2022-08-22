@@ -182,7 +182,7 @@ Even more lucky, our pipeline has prevented us from putting a "bad" model into o
 
 We could also run the sanity-check here, but the pipeline will take care of that for us.
 
-5. Run the notebook `6_git_commit_and_push.ipynb` again to commit and push our model changes to our dev git repo.
+5. Run the notebook `6_git_commit_and_push.ipynb` again to commit and push our model changes to our git repo.
 
 ### Watch the build.
 
