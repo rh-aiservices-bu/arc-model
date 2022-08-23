@@ -59,7 +59,7 @@ If there are no available environments, ____. -->
 As part of the bootstrapping of your environment, an initial instance of your application was deployed.
 Let's review it and confirm it works as expected.
 
-1. Follow the link to your 'OpenShift Console URL'
+<!-- 1. Follow the link to your 'OpenShift Console URL'
 1. Log in to OpenShift using the username: `user1` and password: `openshift`
 1. Select `Administrator` view.
     ![](instructions/select-administrator.png)
@@ -68,7 +68,10 @@ Let's review it and confirm it works as expected.
 1. Select the project called **retail-rhods-project**
 1. You will see a route called **object-detection-app-git**
 1. Click on the matching hyperlink
-    ![](instructions/app-route.png)
+    ![](instructions/app-route.png) -->
+
+1. Follow the URL marked as 'Application url'
+  ![](instructions/application-url.png)
 1. This will open the app in your browser
 1. You will be prompted to authorize your browser to use your Camera. Allow it to do so.
 1. When you take a picture that contains either a piece of clothing, footwear, or a bottle it should display a rebate overlaid on the image.
