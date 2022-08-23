@@ -102,11 +102,10 @@ In this section, we will:
 
 Each environment comes with a dedicated instance of Gitea so that each student can easily and independently make updates in the git repo without affecting the others.
 
-* The Gitea URL to use should be provided together with your environment information
-* If not:
-  * In the OpenShift Console, navigate to **Networking** and then **Routes**
-  * Select the project called **gitea**
-  * You should see the gitea route under the **Location** column
+* The Gitea URL to use should be provided together with your environment information here:
+
+  ![](instructions/gittea-url.png)
+
 * Once you have the gitea URL:
 * Log in to Gitea as user `lab-user` with password `openshift`.
 * Navigate to the **arc-model** git repo.
