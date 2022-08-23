@@ -42,7 +42,7 @@ If you do not work for Red Hat, an environment will be provided for you as part 
 
 Follow the link found below to claim an environment - simply enter your email (any email belonging to you) and the password will be given during the presentation.
 
-https://demo.redhat.com/workshop/7b85bw
+https://demo.redhat.com/workshop/h7bha9
 
 After logging in, you'll be redirected to a site containing all the URLs and logins you'll need to complete the workshop. That page should look like this:
 
