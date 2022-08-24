@@ -161,7 +161,10 @@ In this environment, an OpenShift pipeline has been configure to automatically r
 
 Our dev app should automatically rebuild since that we've pushed our changes to the git repository.
 
-1. Log into the OpenShift Console
+1. Follow the link to your 'OpenShift Console URL' on your page of URLs.
+1. Log in to OpenShift using the username: `user1` and password: `openshift`
+1. Select `Administrator` view.
+    ![](instructions/select-administrator.png)
 1. Navigate to **Pipelines** , then **Pipelines** (yes, again), and then go to **PipelineRuns**
     ![](instructions/select-pipelines.png)
 1. Make sure that the selected project is **retail-rhods-project**
